@@ -120,10 +120,12 @@ public class DriveTrain extends OpMode {
         if (gamepad1.right_bumper){
             telemetry.addData("Strafing Right", "True");
             setStrafepower(1);
+            motorCoastMode();
             }
         else if (gamepad1.left_bumper){
             telemetry.addData("Strafing Right" , "True");
             setStrafepower(-1);
+            motorCoastMode();
         }
         else{
             telemetry.addData("Strafe", "False");
