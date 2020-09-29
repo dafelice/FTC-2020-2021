@@ -146,6 +146,5 @@ public class DriveTrain extends OpMode {
 
     }
 
-    public void teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry) {
-    }
+
 }
