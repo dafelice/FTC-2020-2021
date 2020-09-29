@@ -46,7 +46,7 @@ public class DriveTrain extends OpMode {
     //bc of how strafe drive works, you need to reverse two of the motors
     //private bc we dont need these anywhere else
 
-    private void setRightStrafePower(int Power){
+   /* private void setRightStrafePower(int Power){
         RobotHardware.BackL.setPower(-Power);
         RobotHardware.BackR.setPower(Power);
         RobotHardware.FrontL.setPower(Power);
@@ -59,8 +59,14 @@ public class DriveTrain extends OpMode {
         RobotHardware.BackR.setPower(-Power);
         RobotHardware.FrontL.setPower(-Power);
         RobotHardware.FrontR.setPower(Power);
+    } */
+    //for else if statement to see if current statement is causing motors to fight
+    private void setStrafepower(int Power){
+        RobotHardware.BackL.setPower(-Power);
+        RobotHardware.BackR.setPower(Power);
+        RobotHardware.FrontL.setPower(Power);
+        RobotHardware.FrontR.setPower(-Power);
     }
-
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
@@ -89,7 +95,7 @@ public class DriveTrain extends OpMode {
         testMotors(telemetry);
     }
 //telemetry = sends to driverstation
-    public void teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry){
+    /*public void 3teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry){
         if (gamepad1.right_bumper){
             //saying if right bumper pressed, strafe right is true, if else then false
             telemetry.addData("Strafing Right", "True");
@@ -109,7 +115,20 @@ public class DriveTrain extends OpMode {
             telemetry.addData("Strafing Left", "False");
         }
     }
-
+    */
+    public void teleopStrafecontrol(Gamepad gamepad1, Telemetry telemetry){
+        if (gamepad1.right_bumper){
+            telemetry.addData("Strafing Right", "True");
+            setStrafepower(1);
+            }
+        else if (gamepad1.left_bumper){
+            telemetry.addData("Strafing Right" , "True");
+            setStrafepower(-1);
+        }
+        else{
+            telemetry.addData("Strafe", "False");
+        }
+    }
     private void testMotors(Telemetry telemetry){
         telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
         telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
@@ -125,5 +144,8 @@ public class DriveTrain extends OpMode {
     @Override
     public void loop() {
 
+    }
+
+    public void teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry) {
     }
 }
