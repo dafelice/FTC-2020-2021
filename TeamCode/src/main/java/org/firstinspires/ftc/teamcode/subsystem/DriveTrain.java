@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.config.RobotHardware;
 public class DriveTrain extends OpMode {
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
-    public void hardwareInit(HardwareMap hardwareMap){
+    public void hardwareInit(HardwareMap hardwareMap) {
 
         //identifying the integers as motors
         RobotHardware.BackL = hardwareMap.dcMotor.get("BackL");
@@ -29,6 +29,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
 
+    }
         //making it so it stops immediately - opposite of coast mode
         /*motorBrakeMode();
     }
@@ -76,7 +77,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    public void motorBrakeMode()
+    public void motorBrakeMode(){
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -132,7 +133,7 @@ public class DriveTrain extends OpMode {
             telemetry.addData("Strafe", "False");
         }
     }
-    private void testMotors(Telemetry telemetry){
+    public void testMotors(Telemetry telemetry){
         telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
         telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
         telemetry.addData("FrontR", RobotHardware.FrontR.getCurrentPosition());
