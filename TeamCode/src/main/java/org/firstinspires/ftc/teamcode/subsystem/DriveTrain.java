@@ -30,7 +30,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //making it so it stops immediately - opposite of coast mode
-        motorBrakeMode();
+        /*motorBrakeMode();
     }
 
     //use motorpower to set power to motors for driving forward, etc
@@ -62,10 +62,10 @@ public class DriveTrain extends OpMode {
     } */
     //for else if statement to see if current statement is causing motors to fight
     private void setStrafepower(int Power){
-        RobotHardware.BackL.setPower(-Power);
-        RobotHardware.BackR.setPower(Power);
-        RobotHardware.FrontL.setPower(Power);
-        RobotHardware.FrontR.setPower(-Power);
+        RobotHardware.BackL.setPower(Power);
+        RobotHardware.BackR.setPower(-Power);
+        RobotHardware.FrontL.setPower(-Power);
+        RobotHardware.FrontR.setPower(Power);
     }
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
@@ -76,7 +76,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    public void motorBrakeMode(){
+    public void motorBrakeMode()
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -96,7 +96,7 @@ public class DriveTrain extends OpMode {
         testMotors(telemetry);
     }
 //telemetry = sends to driverstation
-    /*public void 3teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry){
+    /*public void teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry){
         if (gamepad1.right_bumper){
             //saying if right bumper pressed, strafe right is true, if else then false
             telemetry.addData("Strafing Right", "True");
