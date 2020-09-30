@@ -86,7 +86,6 @@ public class DriveTrain extends OpMode {
 
     //takes integer from controller to set motor power
    public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
-        motorBrakeMode();
 
         RobotHardware.FrontR.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
         RobotHardware.FrontL.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);

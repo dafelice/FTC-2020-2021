@@ -23,6 +23,7 @@ public class TestOp extends OpMode {
         //hardwareInit is specific function from driveTrain
         //hardwareMap is how the OpMode is mapped, identifying/defining the motors (DcMotor stuff)
         driveTrain.hardwareInit(hardwareMap);
+        driveTrain.motorBrakeMode();
     }
 
     @Override
