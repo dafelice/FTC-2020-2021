@@ -30,37 +30,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
 
     }
-        //making it so it stops immediately - opposite of coast mode
-        /*motorBrakeMode();
-    }
 
-    //use motorpower to set power to motors for driving forward, etc
-    public void setMotorPower(int Power){
-
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(Power);
-        RobotHardware.FrontL.setPower(Power);
-        RobotHardware.FrontR.setPower(Power);
-    }
-
-    //double power means more fine tuned power - like decimals
-    //bc of how strafe drive works, you need to reverse two of the motors
-    //private bc we dont need these anywhere else
-
-   /* private void setRightStrafePower(int Power){
-        RobotHardware.BackL.setPower(-Power);
-        RobotHardware.BackR.setPower(Power);
-        RobotHardware.FrontL.setPower(Power);
-        RobotHardware.FrontR.setPower(-Power);
-    }
-
-    //opposite powers to go in opposite direction
-    private void setLeftStrafePower(int Power){
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(-Power);
-        RobotHardware.FrontL.setPower(-Power);
-        RobotHardware.FrontR.setPower(Power);
-    } */
     //for else if statement to see if current statement is causing motors to fight
     private void setStrafepower(int Power){
         RobotHardware.BackL.setPower(Power);
@@ -68,6 +38,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontL.setPower(-Power);
         RobotHardware.FrontR.setPower(Power);
     }
+
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
@@ -87,49 +58,35 @@ public class DriveTrain extends OpMode {
     //takes integer from controller to set motor power
    public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
-        RobotHardware.FrontR.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-        RobotHardware.FrontL.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        RobotHardware.BackR.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-        RobotHardware.BackL.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+        RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        RobotHardware.BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
 
         //calling testmotors so we can see whats happening
         testMotors(telemetry);
     }
 //telemetry = sends to driverstation
-    /*public void teleopStrafeControl(Gamepad gamepad1, Telemetry telemetry){
-        if (gamepad1.right_bumper){
-            //saying if right bumper pressed, strafe right is true, if else then false
-            telemetry.addData("Strafing Right", "True");
-            //1 is full power, 0 is no power
-            setRightStrafePower(1);
-        }
-        else{
-            telemetry.addData("Strafing Right", "False");
-        }
 
-
-        if (gamepad1.left_bumper){
-            telemetry.addData("Strafing Left", "True");
-            setLeftStrafePower(1);
-        }
-        else{
-            telemetry.addData("Strafing Left", "False");
-        }
-    }
-    */
     public void teleopStrafecontrol(Gamepad gamepad1, Telemetry telemetry){
+
+        motorBrakeMode();
+
         if (gamepad1.right_bumper){
             telemetry.addData("Strafing Right", "True");
             setStrafepower(1);
             motorCoastMode();
+            //if right bumper is pressed it turns motors to strafe right
             }
         else if (gamepad1.left_bumper){
-            telemetry.addData("Strafing Right" , "True");
+            telemetry.addData("Strafing Left" , "True");
             setStrafepower(-1);
             motorCoastMode();
+            //if left bumper is pressed it turns motors to strafe left
         }
         else{
             telemetry.addData("Strafe", "False");
+            //else nothing happens
         }
     }
     public void testMotors(Telemetry telemetry){
