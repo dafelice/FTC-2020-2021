@@ -12,6 +12,8 @@ import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
 //drivetrain
 
+//once driver is determined we will want to comeback and set each function to their preferred button
+
 public class DriveTrain extends OpMode {
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
@@ -31,7 +33,7 @@ public class DriveTrain extends OpMode {
 
     }
 
-    //for else if statement to see if current statement is causing motors to fight
+    //setting the power for strafing
     private void setStrafepower(int Power){
         RobotHardware.BackL.setPower(Power);
         RobotHardware.BackR.setPower(-Power);
@@ -47,7 +49,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
-
+    //forces motors to stop right away
     public void motorBrakeMode(){
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -58,6 +60,8 @@ public class DriveTrain extends OpMode {
     //takes integer from controller to set motor power
    public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
+        //setting the power for forwards/backwards on the left sick y-axis
+        //setting the power for right/left on the right stick x-axis
         RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
         RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
         RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
@@ -89,6 +93,7 @@ public class DriveTrain extends OpMode {
             //else nothing happens
         }
     }
+    //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
         telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
         telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
