@@ -17,18 +17,18 @@ public class ServoTest extends OpMode {
 
 
 
-    public void setServoDirection(Servo.Direction){
+    public void setPosition(int Position){
 
-        RobotHardware.HookR.setDirection(Servo.Direction);
+        RobotHardware.HookR.setPosition(Position);
         }
 
 
     public void teleopServoControl(Gamepad gamepad1, Telemetry telemetry) {
 
-        if (gamepad1.a = true) {
+        if (gamepad1.a = true){
 
-            telemetry.addData("Servo Forward", "True");
-            setServoDirection(forward);
+            RobotHardware.HookR.setPosition(100);
+
         }
     }
 
