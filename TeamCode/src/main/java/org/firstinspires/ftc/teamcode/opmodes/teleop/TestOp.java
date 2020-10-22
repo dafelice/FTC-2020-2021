@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
 
 //tells bot the name of this OpMode, and where it is stored
-@TeleOp(name = "TestOp mode by Jack",group = "TeleOp")
+@TeleOp(name = "TestOp mode by the Diet Trojantors",group = "TeleOp")
 
 //cant have same as package, "TestOp" is name
 public class TestOp extends OpMode {
