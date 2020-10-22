@@ -10,6 +10,11 @@ import com.qualcomm.robotcore.robot.Robot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
+import static org.firstinspires.ftc.teamcode.config.RobotHardware.BackL;
+import static org.firstinspires.ftc.teamcode.config.RobotHardware.BackR;
+import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontL;
+import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontR;
+
 //drivetrain
 
 //once driver is determined we will want to comeback and set each function to their preferred button
@@ -20,41 +25,71 @@ public class DriveTrain extends OpMode {
     public void hardwareInit(HardwareMap hardwareMap) {
 
         //identifying the integers as motors
-        RobotHardware.BackL = hardwareMap.dcMotor.get("BackL");
-        RobotHardware.BackR = hardwareMap.dcMotor.get("BackR");
-        RobotHardware.FrontL = hardwareMap.dcMotor.get("FrontL");
-        RobotHardware.FrontR = hardwareMap.dcMotor.get("FrontR");
+        BackL = hardwareMap.dcMotor.get("BackL");
+        BackR = hardwareMap.dcMotor.get("BackR");
+        FrontL = hardwareMap.dcMotor.get("FrontL");
+        FrontR = hardwareMap.dcMotor.get("FrontR");
 
         //setting motor directions so they go the correct way when driving
-        RobotHardware.BackL.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
-        RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
+        BackL.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackR.setDirection(DcMotorSimple.Direction.FORWARD);
+        FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
 
     }
 
+
+    public void init_Auto(int Pos, Telemetry telemetry) {
+
+        BackL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BackR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Back Drive Motors
+
+        FrontL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);// Front Drive Motors
+        FrontR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        telemetry.addData("Status", "Resetting Encoders");    //
+        telemetry.update();
+
+
+        BackR.setTargetPosition(Pos);
+        BackL.setTargetPosition(Pos);
+        FrontL.setTargetPosition(Pos);
+        FrontR.setTargetPosition(Pos);
+
+        BackL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackR.setMode(DcMotor.RunMode.RUN_TO_POSITION); // Back Drive Motors
+
+        FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);// Front Drive Motors
+        FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+
+    }
+
+
+
     //setting the power for strafing
     private void setStrafepower(int Power){
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(-Power);
-        RobotHardware.FrontL.setPower(-Power);
-        RobotHardware.FrontR.setPower(Power);
+        BackL.setPower(Power);
+        BackR.setPower(-Power);
+        FrontL.setPower(-Power);
+        FrontR.setPower(Power);
     }
 
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
-        RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
     //forces motors to stop right away
     public void motorBrakeMode(){
-        RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     //takes integer from controller to set motor power
@@ -62,10 +97,10 @@ public class DriveTrain extends OpMode {
 
         //setting the power for forwards/backwards on the left sick y-axis
         //setting the power for right/left on the right stick x-axis
-        RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-        RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        RobotHardware.BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+        FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+        BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
 
         //calling testmotors so we can see whats happening
         testMotors(telemetry);
@@ -95,10 +130,10 @@ public class DriveTrain extends OpMode {
     }
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
-        telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
-        telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
-        telemetry.addData("FrontR", RobotHardware.FrontR.getCurrentPosition());
-        telemetry.addData("BackR", RobotHardware.BackR.getCurrentPosition());
+        telemetry.addData("FrontL", FrontL.getCurrentPosition());
+        telemetry.addData("BackL", BackL.getCurrentPosition());
+        telemetry.addData("FrontR", FrontR.getCurrentPosition());
+        telemetry.addData("BackR", BackR.getCurrentPosition());
     }
 
     @Override
