@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.robot.Robot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
+import static org.firstinspires.ftc.teamcode.config.RobotHardware.HookR;
+
 //drivetrain
 
 //once driver is determined we will want to comeback and set each function to their preferred button
@@ -18,6 +20,9 @@ public class DriveTrain extends OpMode {
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
     public void hardwareInit(HardwareMap hardwareMap) {
+
+        //identifies the Servos
+        HookR = hardwareMap.servo.get("HookR");
 
         //identifying the integers as motors
         RobotHardware.BackL = hardwareMap.dcMotor.get("BackL");
@@ -30,11 +35,11 @@ public class DriveTrain extends OpMode {
         RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
         RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
-
     }
 
     //setting the power for strafing
     private void setStrafepower(int Power){
+
         RobotHardware.BackL.setPower(Power);
         RobotHardware.BackR.setPower(-Power);
         RobotHardware.FrontL.setPower(-Power);
@@ -44,6 +49,7 @@ public class DriveTrain extends OpMode {
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
+
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -51,6 +57,7 @@ public class DriveTrain extends OpMode {
     }
     //forces motors to stop right away
     public void motorBrakeMode(){
+
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -77,28 +84,39 @@ public class DriveTrain extends OpMode {
         motorBrakeMode();
 
         if (gamepad1.right_bumper){
+
             telemetry.addData("Strafing Right", "True");
             setStrafepower(1);
             motorCoastMode();
             //if right bumper is pressed it turns motors to strafe right
             }
         else if (gamepad1.left_bumper){
+
             telemetry.addData("Strafing Left" , "True");
             setStrafepower(-1);
             motorCoastMode();
             //if left bumper is pressed it turns motors to strafe left
         }
         else{
+
             telemetry.addData("Strafe", "False");
             //else nothing happens
         }
     }
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
+
         telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
         telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
         telemetry.addData("FrontR", RobotHardware.FrontR.getCurrentPosition());
         telemetry.addData("BackR", RobotHardware.BackR.getCurrentPosition());
+    }
+
+    public void runServos(Gamepad gampepad1, Telemetry telemetry){
+
+        //Sets the right servo to the right trigger value
+        HookR.setPosition(gamepad1.right_trigger);
+        telemetry.addData("HookR", HookR.getPosition());
     }
 
     @Override
