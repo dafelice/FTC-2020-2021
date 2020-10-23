@@ -61,9 +61,6 @@ public class DriveTrain extends OpMode {
 
         FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);// Front Drive Motors
         FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-
-
     }
 
 
@@ -76,6 +73,14 @@ public class DriveTrain extends OpMode {
         FrontR.setPower(Power);
     }
 
+    //setting power for motors for Auto
+    public void setMotorPower(int Power){
+        BackL.setPower(Power);
+        BackR.setPower(Power);
+        FrontL.setPower(Power);
+        FrontR.setPower(Power);
+    }
+
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
@@ -84,6 +89,7 @@ public class DriveTrain extends OpMode {
         FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
+
     //forces motors to stop right away
     public void motorBrakeMode(){
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -128,6 +134,7 @@ public class DriveTrain extends OpMode {
             //else nothing happens
         }
     }
+
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
         telemetry.addData("FrontL", FrontL.getCurrentPosition());
