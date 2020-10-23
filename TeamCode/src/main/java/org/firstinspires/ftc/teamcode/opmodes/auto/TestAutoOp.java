@@ -8,10 +8,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
+import org.firstinspires.ftc.teamcode.subsystem.AutoCommands;
 import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
 
 public class TestAutoOp extends OpMode {
     DriveTrain driveTrain = new DriveTrain();
+    AutoCommands autoCommands = new AutoCommands(driveTrain);
 
    /* public void hardwareInit(HardwareMap hardwareMap) {
 
@@ -24,14 +26,12 @@ public class TestAutoOp extends OpMode {
         //inits hardware
         driveTrain.hardwareInit(hardwareMap);
         //sets up Auto for use
-        driveTrain.init_Auto(4000, telemetry);
+        //1120 ticks is a full wheel revolution
+        autoCommands.init_Auto(4480, telemetry);
     }
 
     @Override
     public void loop() {
 
-        //motor drives forward for 4000 ticks
-        driveTrain.setMotorPower(1);
-        driveTrain.testMotors(telemetry);
     }
 }

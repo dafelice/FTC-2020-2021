@@ -38,33 +38,6 @@ public class DriveTrain extends OpMode {
 
     }
 
-
-    public void init_Auto(int Pos, Telemetry telemetry) {
-
-        BackL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        BackR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); // Back Drive Motors
-
-        FrontL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);// Front Drive Motors
-        FrontR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
-
-
-        BackR.setTargetPosition(Pos);
-        BackL.setTargetPosition(Pos);
-        FrontL.setTargetPosition(Pos);
-        FrontR.setTargetPosition(Pos);
-
-        BackL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        BackR.setMode(DcMotor.RunMode.RUN_TO_POSITION); // Back Drive Motors
-
-        FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);// Front Drive Motors
-        FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
-
-
-
     //setting the power for strafing
     private void setStrafepower(int Power){
         BackL.setPower(Power);
