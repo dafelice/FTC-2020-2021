@@ -46,14 +46,6 @@ public class DriveTrain extends OpMode {
         FrontR.setPower(Power);
     }
 
-    //setting power for motors for Auto
-    public void setMotorPower(int Power){
-        BackL.setPower(Power);
-        BackR.setPower(Power);
-        FrontL.setPower(Power);
-        FrontR.setPower(Power);
-    }
-
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){

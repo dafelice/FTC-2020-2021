@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystem;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -16,65 +17,75 @@ import static org.firstinspires.ftc.teamcode.config.RobotHardware.BackR;
 import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontL;
 import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontR;
 
-public class AutoCommands extends OpMode{
+@Autonomous(name = "Auto by Diet Trojanators", group = "Auto")
+//LinearOpMode makes it run once then stop
+public class AutoCommands extends LinearOpMode {
 
-    private DriveTrain driveTrain;
+    DcMotor FrontR;
+    DcMotor FrontL;
+    DcMotor BackR;
+    DcMotor BackL;
 
-    public AutoCommands(DriveTrain driveTrain){
-
-        this.driveTrain = driveTrain;
+    //setting a power mode for the robot to go forward/backward
+    private void setMotorPower(int Power){
+        BackL.setPower(Power);
+        BackR.setPower(Power);
+        FrontL.setPower(Power);
+        FrontR.setPower(Power);
     }
 
-    public void init_Auto(int Pos, Telemetry telemetry) {
-
-        //Stop and resets back encoders
-        BackL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        BackR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FrontL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FrontR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        telemetry.addData("Status", "Resetting Encoders");
-        telemetry.update();
-
-        //Sets motor controls to ticks
-        BackR.setTargetPosition(Pos);
-        BackL.setTargetPosition(Pos);
-        FrontL.setTargetPosition(Pos);
-        FrontR.setTargetPosition(Pos);
-
-        //Set encoders to make motors run to determined position
-        BackL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        BackR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    //setting a power mode for the robot to turn left
+    private void setMotorPowerLeft(int Power){
+        BackL.setPower(-Power);
+        BackR.setPower(Power);
+        FrontL.setPower(-Power);
+        FrontR.setPower(Power);
     }
 
-    public void AutoTest() {
-
-        //Sets motor power to full
-        driveTrain.setMotorPower(1);
-
-        //Turns left at one full wheel revolution
-        if (BackR.getCurrentPosition() == 1120) {
-
-            BackR.setTargetPosition(0);
-            BackL.setTargetPosition(2240);
-            FrontL.setTargetPosition(2240);
-            FrontR.setTargetPosition(0);
-
-            driveTrain.setMotorPower(1);
-            driveTrain.testMotors(telemetry);
-        }
+    //Setting a power mode for the robot to turn right
+    private void setMotorPowerRight(int Power){
+        BackL.setPower(Power);
+        BackR.setPower(-Power);
+        FrontL.setPower(Power);
+        FrontR.setPower(-Power);
     }
 
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
 
-    }
+        //init before the start button is pressed
+        FrontR = hardwareMap.dcMotor.get("FrontR");
+        FrontL = hardwareMap.dcMotor.get("FrontL");
+        BackL = hardwareMap.dcMotor.get("BackL");
+        BackR = hardwareMap.dcMotor.get("BackR");
 
-    @Override
-    public void loop() {
+        BackL.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackR.setDirection(DcMotorSimple.Direction.FORWARD);
+        FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        //code that is run once the start button is pressed
+        waitForStart();
+
+        setMotorPower(1);
+
+        sleep(1000);
+
+        setMotorPower(0);
+        setMotorPowerLeft(1);
+
+        sleep(1000);
+
+        setMotorPower(0);
+        setMotorPower(-1);
+
+        sleep(1000);
+
+        setMotorPower(0);
+        //robot should go forward, turn left, go backwards, then stop
 
     }
 }
+
+
 
