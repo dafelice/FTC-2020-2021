@@ -11,29 +11,34 @@ import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
 import static org.firstinspires.ftc.teamcode.config.RobotHardware.HookR;
 
-@TeleOp(name = "ServoTest mode by the Diet Trojantors",group = "TeleOp")
-
 public class ServoTest extends OpMode {
-
 
     public void hardwareInit(HardwareMap hardwareMap) {
 
-        RobotHardware.HookR = hardwareMap.servo.get("HookR");
+        HookR = hardwareMap.servo.get("HookR");
     }
-
 
     public void teleopServoControl(Gamepad gamepad1, Telemetry telemetry) {
 
-        RobotHardware.HookR.setPosition(gamepad1.right_trigger);
+        if (gamepad1.a){
+
+          HookR.setPosition(.5);
+          telemetry.addData("Servo Lowered", "True");
+        }
+        else{
+
+           HookR.setPosition(0);
+           telemetry.addData("Servo Lowered", "False");
+        }
     }
 
     @Override
     public void init() {
-        hardwareInit(hardwareMap);
+
     }
 
     @Override
     public void loop() {
-        teleopServoControl(gamepad1, telemetry);
+
     }
 }

@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.opmodes.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
+import org.firstinspires.ftc.teamcode.subsystem.ServoTest;
 
 //tells bot the name of this OpMode, and where it is stored
 @TeleOp(name = "TestOp mode by the Diet Trojantors",group = "TeleOp")
@@ -15,6 +17,7 @@ public class TestOp extends OpMode {
     //called a reference, calling it here
     //driveTrain is an "object", the method of DriveTrain class that we use to call
     private static DriveTrain driveTrain = new DriveTrain();
+    private static ServoTest servoTest = new ServoTest();
 
     @Override
     //this is what it does at start - initializes this
@@ -24,6 +27,7 @@ public class TestOp extends OpMode {
         //hardwareMap is how the OpMode is mapped, identifying/defining the motors (DcMotor stuff)
         driveTrain.hardwareInit(hardwareMap);
         driveTrain.motorBrakeMode();
+        servoTest.hardwareInit(hardwareMap);
     }
 
     @Override
@@ -35,7 +39,6 @@ public class TestOp extends OpMode {
         driveTrain.teleopMotorControl(gamepad1, telemetry);
         //telemetry prints data out on driverstation
         driveTrain.teleopStrafecontrol(gamepad1,telemetry);
-        //telemetry prints data to driverstation for servo
-        driveTrain.runServos(gamepad1,telemetry);
+        servoTest.teleopServoControl(gamepad1, telemetry);
     }
 }
