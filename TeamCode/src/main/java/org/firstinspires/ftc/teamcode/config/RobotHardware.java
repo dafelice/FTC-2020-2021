@@ -14,7 +14,10 @@ public class RobotHardware {
     public static DcMotor BackL;
     public static DcMotor BackR;
 
+    //Defining the Shooter Motors
+    public static DcMotor ShooterR;
+    public static DcMotor ShooterL;
+
     public static Gamepad gamepad1;
     public static Gamepad gamepad2;
-
 }

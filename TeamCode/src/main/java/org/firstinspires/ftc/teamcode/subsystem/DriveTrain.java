@@ -50,6 +50,7 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
+
     //forces motors to stop right away
     public void motorBrakeMode(){
 
