@@ -19,6 +19,7 @@ public class TestOp extends OpMode {
     @Override
     //this is what it does at start - initializes this
     public void init() {
+
         //driveTrain is calling from other code
         //hardwareInit is specific function from driveTrain
         //hardwareMap is how the OpMode is mapped, identifying/defining the motors (DcMotor stuff)
@@ -29,6 +30,7 @@ public class TestOp extends OpMode {
     @Override
     //loop is for linking and pulling data between controls and motors
     public void loop() {
+
         //calls when we connected the motors to the controller
         //driveTrain references to other code
         //teleopMotorControl is function, gamepad is linking to

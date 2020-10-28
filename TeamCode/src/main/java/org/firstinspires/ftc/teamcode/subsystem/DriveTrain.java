@@ -30,11 +30,11 @@ public class DriveTrain extends OpMode {
         RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
         RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
-
     }
 
     //setting the power for strafing
     private void setStrafepower(int Power){
+
         RobotHardware.BackL.setPower(Power);
         RobotHardware.BackR.setPower(-Power);
         RobotHardware.FrontL.setPower(-Power);
@@ -44,6 +44,7 @@ public class DriveTrain extends OpMode {
     //coast or float means gradual slow down to stop, not sudden brake
     //normal is holding wheel in spot to stop, coast & float let go and run out
     public void motorCoastMode(){
+
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -51,6 +52,7 @@ public class DriveTrain extends OpMode {
     }
     //forces motors to stop right away
     public void motorBrakeMode(){
+
         RobotHardware.BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RobotHardware.FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -82,19 +84,24 @@ public class DriveTrain extends OpMode {
             motorCoastMode();
             //if right bumper is pressed it turns motors to strafe right
             }
+
         else if (gamepad1.left_bumper){
+
             telemetry.addData("Strafing Left" , "True");
             setStrafepower(-1);
             motorCoastMode();
             //if left bumper is pressed it turns motors to strafe left
         }
+
         else{
+
             telemetry.addData("Strafe", "False");
             //else nothing happens
         }
     }
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
+
         telemetry.addData("FrontL", RobotHardware.FrontL.getCurrentPosition());
         telemetry.addData("BackL", RobotHardware.BackL.getCurrentPosition());
         telemetry.addData("FrontR", RobotHardware.FrontR.getCurrentPosition());
