@@ -10,10 +10,6 @@ import com.qualcomm.robotcore.robot.Robot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
-//drivetrain
-
-//once driver is determined we will want to comeback and set each function to their preferred button
-
 public class DriveTrain extends OpMode {
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
@@ -30,15 +26,6 @@ public class DriveTrain extends OpMode {
         RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
         RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
-    }
-
-    //setting the power for strafing
-    private void setStrafepower(int Power){
-
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(-Power);
-        RobotHardware.FrontL.setPower(-Power);
-        RobotHardware.FrontR.setPower(Power);
     }
 
     //coast or float means gradual slow down to stop, not sudden brake
@@ -75,11 +62,21 @@ public class DriveTrain extends OpMode {
     }
 //telemetry = sends to driverstation
 
+    //setting the power for strafing
+    private void setStrafepower(int Power){
+
+        RobotHardware.BackL.setPower(Power);
+        RobotHardware.BackR.setPower(-Power);
+        RobotHardware.FrontL.setPower(-Power);
+        RobotHardware.FrontR.setPower(Power);
+    }
+
     public void teleopStrafecontrol(Gamepad gamepad1, Telemetry telemetry){
 
         motorBrakeMode();
 
         if (gamepad1.right_bumper){
+
             telemetry.addData("Strafing Right", "True");
             setStrafepower(1);
             motorCoastMode();
@@ -100,6 +97,7 @@ public class DriveTrain extends OpMode {
             //else nothing happens
         }
     }
+
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
 

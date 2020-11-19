@@ -2,13 +2,15 @@ package org.firstinspires.ftc.teamcode.opmodes.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
 import org.firstinspires.ftc.teamcode.subsystem.Shooter;
 import org.firstinspires.ftc.teamcode.subsystem.Storage;
+import org.firstinspires.ftc.teamcode.subsystem.ServoTest;
 
 //tells bot the name of this OpMode, and where it is stored
-@TeleOp(name = "TestOp mode by Jack",group = "TeleOp")
+@TeleOp(name = "TestOp mode by the Diet Trojantors",group = "TeleOp")
 
 //cant have same as package, "TestOp" is name
 public class TestOp extends OpMode {
@@ -19,6 +21,7 @@ public class TestOp extends OpMode {
     private static DriveTrain driveTrain = new DriveTrain();
     private static Shooter shooter = new Shooter();
     private static Storage storage = new Storage();
+    private static ServoTest servoTest = new ServoTest();
 
     @Override
     //this is what it does at start - initializes this
@@ -31,6 +34,7 @@ public class TestOp extends OpMode {
         driveTrain.motorBrakeMode();
         shooter.hardwareInit(hardwareMap);
         storage.hardwareInit(hardwareMap);
+        servoTest.hardwareInit(hardwareMap);
     }
 
     @Override
@@ -43,5 +47,6 @@ public class TestOp extends OpMode {
         driveTrain.teleopMotorControl(gamepad1, telemetry);
         //telemetry prints data out on driverstation
         driveTrain.teleopStrafecontrol(gamepad1,telemetry);
+        servoTest.teleopServoControl(gamepad1, telemetry);
     }
 }
