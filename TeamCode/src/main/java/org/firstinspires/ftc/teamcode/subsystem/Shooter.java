@@ -8,47 +8,41 @@ import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
 public class Shooter extends OpMode {
 
-    public void hardwareInit(HardwareMap hardwareMap){
+    public void hardwareInit(HardwareMap hardwareMap) {
 
         RobotHardware.ShooterL = hardwareMap.dcMotor.get("ShooterL");
         RobotHardware.ShooterR = hardwareMap.dcMotor.get("ShooterR");
     }
 
-    public void shooterPower(double Power){
+    public void shooterPower(double Power) {
 
         //making a function that will set the motor power
         RobotHardware.ShooterL.setPower(Power);
         RobotHardware.ShooterR.setPower(Power);
     }
 
-    public void shooterControl(Gamepad gamepad1){
+    public void shooterControl(Gamepad gamepad1) {
 
         shooterPower(0);
 
-        boolean changed = false;
-        if (gamepad1.x && !changed){
+        if (gamepad1.x) {
 
-            if(RobotHardware.ShooterR.getPower() == 0){
-
-                shooterPower(1);
-            }
-            else{
-
-                shooterPower(0);
-            }
+            shooterPower(1);
 
 
+        } else {
+
+            shooterPower(0);
         }
-        if (gamepad1.b && !changed){
 
-            if(RobotHardware.ShooterR.getPower() == 0){
 
-                shooterPower(.8);
-            }
-            else{
+        if (gamepad1.b) {
 
-                shooterPower(0);
-            }
+            shooterPower(.8);
+
+        } else {
+
+            shooterPower(0);
         }
     }
 

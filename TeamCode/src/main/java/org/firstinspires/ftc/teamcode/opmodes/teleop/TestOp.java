@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
 import org.firstinspires.ftc.teamcode.subsystem.Shooter;
+import org.firstinspires.ftc.teamcode.subsystem.Storage;
 
 //tells bot the name of this OpMode, and where it is stored
 @TeleOp(name = "TestOp mode by Jack",group = "TeleOp")
@@ -17,6 +18,7 @@ public class TestOp extends OpMode {
     //driveTrain is an "object", the method of DriveTrain class that we use to call
     private static DriveTrain driveTrain = new DriveTrain();
     private static Shooter shooter = new Shooter();
+    private static Storage storage = new Storage();
 
     @Override
     //this is what it does at start - initializes this
@@ -28,6 +30,7 @@ public class TestOp extends OpMode {
         driveTrain.hardwareInit(hardwareMap);
         driveTrain.motorBrakeMode();
         shooter.hardwareInit(hardwareMap);
+        storage.hardwareInit(hardwareMap);
     }
 
     @Override
