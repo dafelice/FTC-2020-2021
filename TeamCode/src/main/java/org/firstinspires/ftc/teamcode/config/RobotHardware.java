@@ -22,5 +22,6 @@ public class RobotHardware {
     public static Gamepad gamepad1;
     public static Gamepad gamepad2;
 
-    public static Servo HookR;
+    public static Servo StorageR;
+    public static Servo StorageL;
 }
