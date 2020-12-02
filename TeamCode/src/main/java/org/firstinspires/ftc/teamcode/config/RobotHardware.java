@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.config;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -18,6 +19,5 @@ public class RobotHardware {
     public static Gamepad gamepad1;
     public static Gamepad gamepad2;
 
-    public static Servo HookR;
-
+    public static CRServo Servo1;
 }
