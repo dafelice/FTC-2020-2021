@@ -60,7 +60,7 @@ public class DriveTrain extends OpMode {
     }
 
     //takes integer from controller to set motor power
-   public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
+   /*public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
         //setting the power for forwards/backwards on the left sick y-axis
         //setting the power for right/left on the right stick x-axis
@@ -71,12 +71,11 @@ public class DriveTrain extends OpMode {
 
         //calling testmotors so we can see whats happening
         testMotors(telemetry);
-    }
+    } */
+
 //telemetry = sends to driverstation
 
-    public void teleopStrafecontrol(Gamepad gamepad1, Telemetry telemetry){
-
-        motorBrakeMode();
+    public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
         if (gamepad1.right_bumper){
             telemetry.addData("Strafing Right", "True");
@@ -95,10 +94,17 @@ public class DriveTrain extends OpMode {
 
         else{
 
+            RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+            RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+            RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+            RobotHardware.BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+
+
             telemetry.addData("Strafe", "False");
             //else nothing happens
         }
     }
+
     //gets the current rotation of motors
     public void testMotors(Telemetry telemetry){
 
