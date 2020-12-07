@@ -80,7 +80,6 @@ public class DriveTrain extends OpMode {
         if (gamepad1.right_bumper){
             telemetry.addData("Strafing Right", "True");
             setStrafepower(1);
-            motorCoastMode();
             //if right bumper is pressed it turns motors to strafe right
             }
 
@@ -88,7 +87,6 @@ public class DriveTrain extends OpMode {
 
             telemetry.addData("Strafing Left" , "True");
             setStrafepower(-1);
-            motorCoastMode();
             //if left bumper is pressed it turns motors to strafe left
         }
 
