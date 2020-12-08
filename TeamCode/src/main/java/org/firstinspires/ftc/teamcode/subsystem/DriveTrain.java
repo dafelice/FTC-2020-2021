@@ -20,10 +20,10 @@ public class DriveTrain extends OpMode {
     public void hardwareInit(HardwareMap hardwareMap) {
 
         //identifying the integers as motors
-        BackL = hardwareMap.dcMotor.get("BackL");
-        BackR = hardwareMap.dcMotor.get("BackR");
-        FrontL = hardwareMap.dcMotor.get("FrontL");
-        FrontR = hardwareMap.dcMotor.get("FrontR");
+        RobotHardware.BackL = hardwareMap.dcMotor.get("BackL");
+        RobotHardware.BackR = hardwareMap.dcMotor.get("BackR");
+        RobotHardware.FrontL = hardwareMap.dcMotor.get("FrontL");
+        RobotHardware.FrontR = hardwareMap.dcMotor.get("FrontR");
 
         //setting motor directions so they go the correct way when driving
         RobotHardware.BackL.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -74,15 +74,6 @@ public class DriveTrain extends OpMode {
     } */
 
 //telemetry = sends to driverstation
-
-    //setting the power for strafing
-    private void setStrafepower(int Power){
-
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(-Power);
-        RobotHardware.FrontL.setPower(-Power);
-        RobotHardware.FrontR.setPower(Power);
-    }
 
     public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
