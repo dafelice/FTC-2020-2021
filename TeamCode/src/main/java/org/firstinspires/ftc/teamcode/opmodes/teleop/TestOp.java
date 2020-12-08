@@ -42,6 +42,6 @@ public class TestOp extends OpMode {
         //teleopMotorControl is function, gamepad is linking to
         driveTrain.teleopMotorControl(gamepad1, telemetry);
         //telemetry prints data out on driverstation
-        driveTrain.teleopStrafecontrol(gamepad1,telemetry);
+        //driveTrain.teleopStrafecontrol(gamepad1,telemetry);
     }
 }
