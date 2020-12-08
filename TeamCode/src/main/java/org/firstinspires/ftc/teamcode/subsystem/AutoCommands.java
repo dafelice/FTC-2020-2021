@@ -28,6 +28,7 @@ public class AutoCommands extends LinearOpMode {
 
     //setting a power mode for the robot to go forward/backward
     private void setMotorPower(int Power){
+
         BackL.setPower(Power);
         BackR.setPower(Power);
         FrontL.setPower(Power);
@@ -36,6 +37,7 @@ public class AutoCommands extends LinearOpMode {
 
     //setting a power mode for the robot to turn left
     private void setMotorPowerLeft(int Power){
+
         BackL.setPower(-Power);
         BackR.setPower(Power);
         FrontL.setPower(-Power);
@@ -44,6 +46,7 @@ public class AutoCommands extends LinearOpMode {
 
     //Setting a power mode for the robot to turn right
     private void setMotorPowerRight(int Power){
+
         BackL.setPower(Power);
         BackR.setPower(-Power);
         FrontL.setPower(Power);
@@ -83,7 +86,6 @@ public class AutoCommands extends LinearOpMode {
 
         setMotorPower(0);
         //robot should go forward, turn left, go backwards, then stop
-
     }
 }
 

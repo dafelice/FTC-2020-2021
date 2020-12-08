@@ -28,19 +28,19 @@ public class Shooter extends OpMode {
         if (gamepad1.x) {
 
             shooterPower(1);
+        }
 
-
-        } else {
+        else {
 
             shooterPower(0);
         }
 
-
         if (gamepad1.b) {
 
             shooterPower(.8);
+        }
 
-        } else {
+        else {
 
             shooterPower(0);
         }

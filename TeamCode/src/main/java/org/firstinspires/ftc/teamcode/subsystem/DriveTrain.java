@@ -10,11 +10,10 @@ import com.qualcomm.robotcore.robot.Robot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
-//drivetrain
-
 //once driver is determined we will want to comeback and set each function to their preferred button
 
 public class DriveTrain extends OpMode {
+
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
     public void hardwareInit(HardwareMap hardwareMap) {
@@ -34,6 +33,7 @@ public class DriveTrain extends OpMode {
 
     //setting the power for strafing
     private void setStrafepower(int Power){
+
         RobotHardware.BackL.setPower(Power);
         RobotHardware.BackR.setPower(-Power);
         RobotHardware.FrontL.setPower(-Power);
@@ -59,22 +59,6 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    //takes integer from controller to set motor power
-   /*public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
-
-        //setting the power for forwards/backwards on the left sick y-axis
-        //setting the power for right/left on the right stick x-axis
-        FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-        BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-
-        //calling testmotors so we can see whats happening
-        testMotors(telemetry);
-    } */
-
-//telemetry = sends to driverstation
-
     public void teleopMotorControl(Gamepad gamepad1, Telemetry telemetry){
 
         if (gamepad1.right_bumper){
@@ -93,6 +77,7 @@ public class DriveTrain extends OpMode {
 
         else{
 
+            //if the robot is not strafing, then it checks the joystick to see where it should drive
             RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
             RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
             RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
@@ -100,7 +85,6 @@ public class DriveTrain extends OpMode {
 
 
             telemetry.addData("Strafe", "False");
-            //else nothing happens
         }
     }
 
@@ -122,6 +106,4 @@ public class DriveTrain extends OpMode {
     public void loop() {
 
     }
-
-
 }
