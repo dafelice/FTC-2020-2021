@@ -10,22 +10,34 @@ import com.qualcomm.robotcore.robot.Robot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.config.RobotHardware;
 
+//drivetrain
+
+//once driver is determined we will want to comeback and set each function to their preferred button
+
 public class DriveTrain extends OpMode {
     //calling hardware so that it is linked to actual motors
     //hardware init comes first bc we call it in later functions; this one essential
     public void hardwareInit(HardwareMap hardwareMap) {
 
         //identifying the integers as motors
-        RobotHardware.BackL = hardwareMap.dcMotor.get("BackL");
-        RobotHardware.BackR = hardwareMap.dcMotor.get("BackR");
-        RobotHardware.FrontL = hardwareMap.dcMotor.get("FrontL");
-        RobotHardware.FrontR = hardwareMap.dcMotor.get("FrontR");
+        BackL = hardwareMap.dcMotor.get("BackL");
+        BackR = hardwareMap.dcMotor.get("BackR");
+        FrontL = hardwareMap.dcMotor.get("FrontL");
+        FrontR = hardwareMap.dcMotor.get("FrontR");
 
         //setting motor directions so they go the correct way when driving
         RobotHardware.BackL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
         RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
+    }
+
+    //setting the power for strafing
+    private void setStrafepower(int Power){
+        RobotHardware.BackL.setPower(Power);
+        RobotHardware.BackR.setPower(-Power);
+        RobotHardware.FrontL.setPower(-Power);
+        RobotHardware.FrontR.setPower(Power);
     }
 
     //coast or float means gradual slow down to stop, not sudden brake
@@ -52,10 +64,10 @@ public class DriveTrain extends OpMode {
 
         //setting the power for forwards/backwards on the left sick y-axis
         //setting the power for right/left on the right stick x-axis
-        RobotHardware.FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        RobotHardware.FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
-        RobotHardware.BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
-        RobotHardware.BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+        FrontR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        FrontL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
+        BackR.setPower(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        BackL.setPower(gamepad1.left_stick_y - gamepad1.right_stick_x);
 
         //calling testmotors so we can see whats happening
         testMotors(telemetry);
