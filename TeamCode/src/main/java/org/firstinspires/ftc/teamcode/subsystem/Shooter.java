@@ -29,7 +29,6 @@ public class Shooter extends OpMode {
 
             shooterPower(1);
         }
-
         else {
 
             shooterPower(0);
@@ -39,7 +38,6 @@ public class Shooter extends OpMode {
 
             shooterPower(.8);
         }
-
         else {
 
             shooterPower(0);

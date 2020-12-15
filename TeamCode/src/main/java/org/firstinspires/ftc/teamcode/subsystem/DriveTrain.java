@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystem;
+ package org.firstinspires.ftc.teamcode.subsystem;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -67,14 +67,12 @@ public class DriveTrain extends OpMode {
             setStrafepower(1);
             //if right bumper is pressed it turns motors to strafe right
             }
-
         else if (gamepad1.left_bumper){
 
             telemetry.addData("Strafing Left" , "True");
             setStrafepower(-1);
             //if left bumper is pressed it turns motors to strafe left
         }
-
         else{
 
             //if the robot is not strafing, then it checks the joystick to see where it should drive
