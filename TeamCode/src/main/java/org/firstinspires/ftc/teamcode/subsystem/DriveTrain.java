@@ -34,10 +34,10 @@ public class DriveTrain extends OpMode {
     //setting the power for strafing
     private void setStrafepower(int Power){
 
-        RobotHardware.BackL.setPower(Power);
-        RobotHardware.BackR.setPower(-Power);
-        RobotHardware.FrontL.setPower(-Power);
-        RobotHardware.FrontR.setPower(Power);
+        RobotHardware.BackL.setPower(-Power);
+        RobotHardware.BackR.setPower(Power);
+        RobotHardware.FrontL.setPower(Power);
+        RobotHardware.FrontR.setPower(-Power);
     }
 
     //coast or float means gradual slow down to stop, not sudden brake

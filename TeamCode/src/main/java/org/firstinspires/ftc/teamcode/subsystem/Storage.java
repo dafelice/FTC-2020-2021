@@ -19,7 +19,7 @@ public class Storage extends OpMode {
     public void setstorageIntake(int Power){
 
         RobotHardware.IntakeR.setPower(Power);
-        RobotHardware.IntakeL.setPower(Power);
+        RobotHardware.IntakeL.setPower(-Power);
     }
 
     public void storageRotate(int Direction){
@@ -28,7 +28,7 @@ public class Storage extends OpMode {
 
     public void storageControl(Gamepad gamepad1){
 
-        if (this.gamepad1.a){
+        if (gamepad1.a){
 
             setstorageIntake(1);
         }
