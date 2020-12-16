@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystem;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.robot.Robot;
@@ -25,9 +26,9 @@ public class Storage extends OpMode {
 
     }
 
-    public void storageControl(){
+    public void storageControl(Gamepad gamepad1){
 
-        if (gamepad1.a){
+        if (this.gamepad1.a){
 
             setstorageIntake(1);
         }
