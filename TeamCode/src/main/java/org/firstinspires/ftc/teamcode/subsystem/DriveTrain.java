@@ -25,10 +25,10 @@ public class DriveTrain extends OpMode {
         RobotHardware.FrontR = hardwareMap.dcMotor.get("FrontR");
 
         //setting motor directions so they go the correct way when driving
-        RobotHardware.BackL.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotHardware.BackR.setDirection(DcMotorSimple.Direction.FORWARD);
-        RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
+        RobotHardware.BackL.setDirection(DcMotorSimple.Direction.FORWARD);
+        RobotHardware.BackR.setDirection(DcMotorSimple.Direction.REVERSE);
+        RobotHardware.FrontL.setDirection(DcMotorSimple.Direction.FORWARD);
+        RobotHardware.FrontR.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     //setting the power for strafing
