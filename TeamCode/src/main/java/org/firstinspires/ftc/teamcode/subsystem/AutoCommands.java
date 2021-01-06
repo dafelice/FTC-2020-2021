@@ -112,6 +112,20 @@ public class AutoCommands extends LinearOpMode {
 
         setMotorPower(0);
 
+        sleep(500);
+
+        setMotorPower(1);
+
+        setstorageIntake(1);
+
+        sleep(1000);
+
+        setMotorPower(0);
+
+        setstorageIntake(0);
+
+        sleep(500);
+
 
 
 
