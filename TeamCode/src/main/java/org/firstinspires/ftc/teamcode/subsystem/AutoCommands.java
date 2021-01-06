@@ -2,20 +2,8 @@ package org.firstinspires.ftc.teamcode.subsystem;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.config.RobotHardware;
-import org.firstinspires.ftc.teamcode.subsystem.DriveTrain;
-
-import static org.firstinspires.ftc.teamcode.config.RobotHardware.BackL;
-import static org.firstinspires.ftc.teamcode.config.RobotHardware.BackR;
-import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontL;
-import static org.firstinspires.ftc.teamcode.config.RobotHardware.FrontR;
 
 @Autonomous(name = "Auto by Diet Trojanators", group = "Auto")
 //LinearOpMode makes it run once then stop
@@ -53,6 +41,22 @@ public class AutoCommands extends LinearOpMode {
         FrontR.setPower(-Power);
     }
 
+    private void setMotorStrafeLeft(int Power){
+
+        BackL.setPower(Power);
+        BackR.setPower(-Power);
+        FrontL.setPower(-Power);
+        FrontR.setPower(Power);
+    }
+
+    private void setMotorStrafeRight(int Power){
+
+        BackL.setPower(-Power);
+        BackR.setPower(Power);
+        FrontL.setPower(Power);
+        FrontR.setPower(-Power);
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -75,17 +79,34 @@ public class AutoCommands extends LinearOpMode {
         sleep(1000);
 
         setMotorPower(0);
-        setMotorPowerLeft(1);
+
+        sleep(500);
+
+        setMotorStrafeLeft(1);
 
         sleep(1000);
 
         setMotorPower(0);
+
+        sleep(500);
+
         setMotorPower(-1);
 
         sleep(1000);
 
         setMotorPower(0);
-        //robot should go forward, turn left, go backwards, then stop
+
+        sleep(500);
+
+        setMotorStrafeRight(1);
+
+        sleep(1000);
+
+        setMotorPower(0);
+
+
+
+
     }
 }
 
