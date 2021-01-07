@@ -15,6 +15,8 @@ public class AutoCommands extends LinearOpMode {
     DcMotor FrontL;
     DcMotor BackR;
     DcMotor BackL;
+    DcMotor IntakeL;
+    DcMotor IntakeR;
 
     //setting a power mode for the robot to go forward/backward
     private void setMotorPower(int Power){
@@ -73,6 +75,8 @@ public class AutoCommands extends LinearOpMode {
         FrontL = hardwareMap.dcMotor.get("FrontL");
         BackL = hardwareMap.dcMotor.get("BackL");
         BackR = hardwareMap.dcMotor.get("BackR");
+        IntakeL = hardwareMap.dcMotor.get("IntakeL");
+        IntakeR = hardwareMap.dcMotor.get("IntakeR");
 
         BackL.setDirection(DcMotorSimple.Direction.REVERSE);
         BackR.setDirection(DcMotorSimple.Direction.FORWARD);
