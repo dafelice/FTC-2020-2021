@@ -5,8 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.config.RobotHardware;
-
 @Autonomous(name = "Auto by Diet Trojanators", group = "Auto")
 //LinearOpMode makes it run once then stop
 public class AutoCommands extends LinearOpMode {
@@ -61,10 +59,10 @@ public class AutoCommands extends LinearOpMode {
         FrontR.setPower(-Power);
     }
 
-    public void setstorageIntake(int Power){
+    private void setstorageIntake(int Power){
 
-        RobotHardware.IntakeR.setPower(Power);
-        RobotHardware.IntakeL.setPower(-Power);
+        IntakeR.setPower(Power);
+        IntakeL.setPower(-Power);
     }
 
     @Override
@@ -85,38 +83,6 @@ public class AutoCommands extends LinearOpMode {
 
         //code that is run once the start button is pressed
         waitForStart();
-
-        setMotorPower(1);
-
-        sleep(1000);
-
-        setMotorPower(0);
-
-        sleep(500);
-
-        setMotorStrafeLeft(1);
-
-        sleep(1000);
-
-        setMotorPower(0);
-
-        sleep(500);
-
-        setMotorPower(-1);
-
-        sleep(1000);
-
-        setMotorPower(0);
-
-        sleep(500);
-
-        setMotorStrafeRight(1);
-
-        sleep(1000);
-
-        setMotorPower(0);
-
-        sleep(500);
 
         setMotorPower(1);
 
