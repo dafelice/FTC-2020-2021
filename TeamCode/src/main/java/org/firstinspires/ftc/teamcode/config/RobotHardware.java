@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.config;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.Servo;
 
 /*This code is for identifying hardware! DONT
 * use "init" to make function*/
@@ -24,4 +24,6 @@ public class RobotHardware {
 
     public static DcMotor IntakeR;
     public static DcMotor IntakeL;
+
+    public static CRServo Servo1;
 }

@@ -25,7 +25,7 @@ public class Shooter extends OpMode {
 
         shooterPower(0);
 
-        if (gamepad1.x) {
+        if (gamepad1.y) {
 
             shooterPower(1);
         }
@@ -34,14 +34,7 @@ public class Shooter extends OpMode {
             shooterPower(0);
         }
 
-        if (gamepad1.b) {
 
-            shooterPower(.8);
-        }
-        else {
-
-            shooterPower(0);
-        }
     }
 
     @Override
