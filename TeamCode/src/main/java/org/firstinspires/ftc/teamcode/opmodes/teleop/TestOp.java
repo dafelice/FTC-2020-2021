@@ -44,5 +44,6 @@ public class TestOp extends OpMode {
         //telemetry prints data out on driverstation
         storage.storageControl(gamepad1);
         shooter.shooterControl(gamepad1);
+        storage.teleopServoControl(gamepad1, telemetry);
     }
 }

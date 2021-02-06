@@ -96,9 +96,6 @@ public class AutoCommands extends LinearOpMode {
 
         sleep(500);
 
-
-
-
     }
 }
 

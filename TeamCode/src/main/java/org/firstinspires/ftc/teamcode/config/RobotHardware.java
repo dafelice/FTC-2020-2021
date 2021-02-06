@@ -26,4 +26,5 @@ public class RobotHardware {
     public static DcMotor IntakeL;
 
     public static CRServo Servo1;
+    public static CRServo Servo2;
 }
